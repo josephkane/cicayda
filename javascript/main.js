@@ -68,17 +68,41 @@ pigLatinButton.addEventListener("click", () => {pigLatinDiv.style.display = "blo
 translateButton.addEventListener("click", () => {translate()});
 
 function translate () {
-	let phrase = document.getElementById("pigLatinInput").value
-	pigLatinContainer.innerHTML = ""
+	let language = document.querySelector('input[name="language"]:checked').value;
+	let phrase = document.getElementById("pigLatinInput").value;
+	if (language == "english" && phrase != "") {
+		translateToEnglish(phrase)
+	} else if (language == "pigLatin" && phrase != "") {
+		translateToPigLatin(phrase)
+	}
+}
+
+function translateToPigLatin (phrase) {
+	pigLatinContainer.innerHTML = "";
 	let phraseArray = phrase.split(" ");
 	let pigLatinArray = [];
 
 	for (let i = 0; i < phraseArray.length; i++) {
 		let firstLetter = phraseArray[i][0]
 		let rest = phraseArray[i].slice(1)
-		pigLatinArray.push(rest + firstLetter + "ay")
+		pigLatinArray.push((rest + firstLetter + "ay").toLowerCase())
+	};
+
+	let pigLatinPhrase = pigLatinArray.join(" ");
+	pigLatinContainer.innerHTML = pigLatinPhrase.charAt(0).toUpperCase() + pigLatinPhrase.slice(1);
+}
+
+function translateToEnglish (phrase) {
+	pigLatinContainer.innerHTML = "";
+	let phraseArray = phrase.split(" ");
+	let englishArray = [];
+
+	for (let i = 0; i < phraseArray.length; i++) {
+		let noAy = phraseArray[i].slice(0, -2);
+		let translatedWord = noAy.slice(-1) + noAy.slice(0, -1)
+		englishArray.push(translatedWord.toLowerCase())
 	}
 
-	let pigLatinPhrase = pigLatinArray.join(" ")
-	pigLatinContainer.innerHTML = pigLatinPhrase.charAt(0).toUpperCase() + pigLatinPhrase.slice(1)
+	let englishPhrase = englishArray.join(" ");
+	pigLatinContainer.innerHTML = englishPhrase.charAt(0).toUpperCase() + englishPhrase.slice(1);
 }
