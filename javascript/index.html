@@ -8,26 +8,26 @@
 	</head>
 	<body>
 		<div id="selector">
-			<button id="leapYearButton" type="click" value="leapYear">Leap Year</button>
-			<button id="sqPhraseButton" type="click" value="squarePhrase">Square Phrase</button>
-			<button id="pigLatinButton" type="click" value="pigLatin">Pig Latin</button>
+			<button id="leapYearButton" class="selectorButton" type="click" value="leapYear">Leap Year</button>
+			<button id="sqPhraseButton" class="selectorButton" type="click" value="sqPhrase">Square Phrase</button>
+			<button id="pigLatinButton" class="selectorButton" type="click" value="pigLatin">Pig Latin</button>
 		</div>
 
-		<div id="leapYear" style="display:none">
+		<div id="leapYear" class="problemDiv" style="display:none">
 			<label>Enter a year:</label>
 			<input id="leapYearInput" type="text">
 			<button id="showMeLeapYears" type="click">Show me leap years</button>
 			<div id="nextTwentyLeapYears"></div>
 		</div>
 
-		<div id="sqPhrase" style="display:none">
+		<div id="sqPhrase" class="problemDiv" style="display:none">
 			<label>Enter a phrase:</label>
 			<input id="sqPhraseInput" type="text">
 			<button id="printSqPhraseButton" type="click">Print in console</button>
 
 		</div>
 
-		<div id="pigLatin" style="display:none">
+		<div id="pigLatin" class="problemDiv" style="display:none">
 			<label>Enter a phrase:</label>
 			<input id="pigLatinInput" type="text">
 			<input type="radio" name="language" value="pigLatin" checked>To pig latin
