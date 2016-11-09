@@ -70,16 +70,22 @@ translateButton.addEventListener("click", () => {translate()});
 function translate () {
 	let language = document.querySelector('input[name="language"]:checked').value;
 	let phrase = document.getElementById("pigLatinInput").value;
-	if (language == "english" && phrase != "") {
-		translateToEnglish(phrase)
-	} else if (language == "pigLatin" && phrase != "") {
-		translateToPigLatin(phrase)
+
+	if (phrase != "") {
+		pigLatinContainer.innerHTML = "";
+		let phraseArray = phrase.split(" ")
+
+		if (language == "english" && checkForPigLatin(phraseArray)) {
+			translateToEnglish(phraseArray)
+		} else if (language == "pigLatin") {
+			translateToPigLatin(phraseArray)
+		} else {
+			alert("Phrase is not pig latin, please correct and try again.")
+		}
 	}
 }
 
-function translateToPigLatin (phrase) {
-	pigLatinContainer.innerHTML = "";
-	let phraseArray = phrase.split(" ");
+function translateToPigLatin (phraseArray) {
 	let pigLatinArray = [];
 
 	for (let i = 0; i < phraseArray.length; i++) {
@@ -88,13 +94,10 @@ function translateToPigLatin (phrase) {
 		pigLatinArray.push((rest + firstLetter + "ay").toLowerCase())
 	};
 
-	let pigLatinPhrase = pigLatinArray.join(" ");
-	pigLatinContainer.innerHTML = pigLatinPhrase.charAt(0).toUpperCase() + pigLatinPhrase.slice(1);
+	pigLatinContainer.innerHTML = capitalizeFirstLetter(pigLatinArray);
 }
 
-function translateToEnglish (phrase) {
-	pigLatinContainer.innerHTML = "";
-	let phraseArray = phrase.split(" ");
+function translateToEnglish (phraseArray) {
 	let englishArray = [];
 
 	for (let i = 0; i < phraseArray.length; i++) {
@@ -103,6 +106,20 @@ function translateToEnglish (phrase) {
 		englishArray.push(translatedWord.toLowerCase())
 	}
 
-	let englishPhrase = englishArray.join(" ");
-	pigLatinContainer.innerHTML = englishPhrase.charAt(0).toUpperCase() + englishPhrase.slice(1);
+	pigLatinContainer.innerHTML = capitalizeFirstLetter(englishArray);
+}
+
+function checkForPigLatin (phraseArray) {
+	let status = true;
+	for (word in phraseArray) {
+		if (phraseArray[word].slice(-2) != "ay") {
+			status = false
+		}
+	}
+	return status
+}
+
+function capitalizeFirstLetter (translatedArray) {
+	let stringedPhrase = translatedArray.join(" ");
+	return stringedPhrase.charAt(0).toUpperCase() + stringedPhrase.slice(1)
 }
