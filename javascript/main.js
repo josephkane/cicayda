@@ -14,12 +14,9 @@ function showSelectedDiv (target) {
 /****************
 LEAP YEARS
 ****************/
-
 const leapYearButton = document.getElementById("leapYearButton")
 const showMeLeapYearsButton = document.getElementById("showMeLeapYears")
-const leapYearDiv = document.getElementById("leapYear")
 const nextTwentyLeapYears = document.getElementById("nextTwentyLeapYears")
-// leapYearButton.addEventListener("click", () => {leapYearDiv.style.display = "block"})
 showMeLeapYearsButton.addEventListener("click", calculateLeapYears)
 
 function calculateLeapYears () {
@@ -46,11 +43,8 @@ function calculateLeapYears () {
 /****************
 SQUARE PHRASE
 ****************/
-
-const sqPhraseDiv = document.getElementById("sqPhrase");
 const sqPhraseButton = document.getElementById("sqPhraseButton");
 const printSqPhraseButton = document.getElementById("printSqPhraseButton");
-// sqPhraseButton.addEventListener("click", () => {sqPhraseDiv.style.display = "block"});
 printSqPhraseButton.addEventListener("click", printSqPhrase);
 
 function printSqPhrase () {
@@ -73,11 +67,9 @@ function printSqPhrase () {
 /****************
 PIG LATIN
 ****************/
-const pigLatinDiv = document.getElementById("pigLatin");
 const pigLatinContainer = document.getElementById("pigLatinContainer");
 const pigLatinButton = document.getElementById("pigLatinButton");
 const translateButton = document.getElementById("translateButton");
-// pigLatinButton.addEventListener("click", () => {pigLatinDiv.style.display = "block"});
 translateButton.addEventListener("click", translate);
 
 function translate () {
