@@ -60,6 +60,25 @@ function printSqPhrase () {
 /****************
 PIG LATIN
 ****************/
-const pigLatinButton = document.getElementById("pigLatinButton")
-const pigLatinDiv = document.getElementById("pigLatin")
-pigLatinButton.addEventListener("click", () => {pigLatinDiv.style.display = "block"})
+const pigLatinDiv = document.getElementById("pigLatin");
+const pigLatinContainer = document.getElementById("pigLatinContainer");
+const pigLatinButton = document.getElementById("pigLatinButton");
+const translateButton = document.getElementById("translateButton");
+pigLatinButton.addEventListener("click", () => {pigLatinDiv.style.display = "block"});
+translateButton.addEventListener("click", () => {translate()});
+
+function translate () {
+	let phrase = document.getElementById("pigLatinInput").value
+	pigLatinContainer.innerHTML = ""
+	let phraseArray = phrase.split(" ");
+	let pigLatinArray = [];
+
+	for (let i = 0; i < phraseArray.length; i++) {
+		let firstLetter = phraseArray[i][0]
+		let rest = phraseArray[i].slice(1)
+		pigLatinArray.push(rest + firstLetter + "ay")
+	}
+
+	let pigLatinPhrase = pigLatinArray.join(" ")
+	pigLatinContainer.innerHTML = pigLatinPhrase.charAt(0).toUpperCase() + pigLatinPhrase.slice(1)
+}
