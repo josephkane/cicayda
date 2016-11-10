@@ -96,7 +96,7 @@
     (println "2. Pig latin to english")
     (def choice (read-line))
     (try
-        (if (and (Integer. choice) (<= (Integer. choice) 3))
+        (if (and (Integer. choice) (< (Integer. choice) 3))
             (do
                 (println "Enter a phrase:")
                 (def inputPhrase (read-line))
