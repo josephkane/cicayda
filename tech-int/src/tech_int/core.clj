@@ -1,7 +1,7 @@
 (ns tech-int.core
   (:gen-class))
 
-; LEAP YEAR
+;;; LEAP YEAR ;;;
 
 (defn checkIfLeapYear
     [year]
@@ -29,6 +29,25 @@
             (recur leapYearVector (inc year))
         )
     )
+)
+
+;;; PIG LATIN ;;;
+
+(use '[clojure.string :only (join split capitalize)])
+
+(defn toPigLatin
+    [string]
+    (str (join (rest string)) (first string) (str "ay"))
+)
+
+(defn -pigLatin []
+    (println "Enter a phrase:")
+    (def inputPhrase (read-line))
+    (println "--")
+    (def inputArray (split inputPhrase #"\s+"))
+    (def pigLatinArray (mapv toPigLatin inputArray))
+    (println (capitalize (join " " pigLatinArray)))
+    (println "--")
 )
 
 
