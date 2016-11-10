@@ -35,25 +35,41 @@
 
 (use '[clojure.string :only (join split capitalize ends-with?)])
 
+; (defn printPhrase
+;     [inputVector width]
+;     (loop [v inputVector
+;             w width
+;             i 0]
+;         (println (count v))
+;         (println i)
+;         (println (<= i (count v)))
+;         (if (<= i (count v))
+;             (if (<= (count (v i)) w)
+;                 (do
+;                     (println (apply str "* " (v i) (apply str (repeat (- w (count (v i))) " ")) " *"))
+;                 )
+;                 (println (apply str "* " (v i) " *"))
+;             )
+;         )
+;         (recur v w (inc i))
+;     )
+; )
+
 (defn printPhrase
-    [inputVector width]
-    (loop [v inputVector
-            w width
-            i 0]
-        (println (count v))
-        (println i)
-        (println (<= i (count v)))
-        (if (< i (count v))
-            (if (<= (count (v i)) w)
-                (do
-                    (println (apply str "* " (v i) (apply str (repeat (- w (count (v i))) " ")) " *"))
-                )
-                (do
-                    (println (apply str "* " (v i) " *"))
+    [v w]
+    (def i (atom 0))
+    (while (< @i (count v))
+        (do
+            (if (<= @i (count v))
+                (if (<= (count (v @i)) w)
+                    (do
+                        (println (apply str "* " (v @i) (apply str (repeat (- w (count (v @i))) " ")) " *"))
+                    )
+                    (println (apply str "* " (v @i) " *"))
                 )
             )
         )
-        (recur v w (inc i))
+        (swap! i inc)
     )
 )
 
