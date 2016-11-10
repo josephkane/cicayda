@@ -31,9 +31,20 @@
     )
 )
 
-;;; PIG LATIN ;;;
+;;; SQUARE PHRASE ;;;
 
 (use '[clojure.string :only (join split capitalize ends-with?)])
+
+(defn -sqPhrase []
+    (println "Enter a phrase:")
+    (def inputPhrase (read-line))
+    (def inputVector (split inputPhrase #"\s+"))
+    (def width (apply max (mapv count inputVector)))
+)
+
+
+;;; PIG LATIN ;;;
+
 
 (defn toPigLatin
     [string]
@@ -45,10 +56,7 @@
     (loop [array array
            i 0]
         (if (< i (count array))
-            (if (ends-with? (array i) "ay")
-                true
-                false
-            )
+            (ends-with? (array i) "ay")
             (recur array (inc i))
         )
     )
@@ -66,12 +74,12 @@
 (defn -pigLatin []
     (println "1. English to pig latin")
     (println "2. Pig latin to english")
-    (def choice (Integer. (read-line)))
+    (def choice (read-line))
     (println "Enter a phrase:")
     (def inputPhrase (read-line))
     (println "--")
     (def inputArray (split inputPhrase #"\s+"))
-    (if (< choice 3)
+    (if (< (Integer. choice) 3)
         (if (= choice 1)
             (do
                 (def pigLatinArray (mapv toPigLatin inputArray))
