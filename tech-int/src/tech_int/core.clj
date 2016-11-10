@@ -35,11 +35,36 @@
 
 (use '[clojure.string :only (join split capitalize ends-with?)])
 
+(defn printPhrase
+    [inputVector width]
+    (loop [v inputVector
+            w width
+            i 0]
+        (println (count v))
+        (println i)
+        (println (<= i (count v)))
+        (if (< i (count v))
+            (if (<= (count (v i)) w)
+                (do
+                    (println (apply str "* " (v i) (apply str (repeat (- w (count (v i))) " ")) " *"))
+                )
+                (do
+                    (println (apply str "* " (v i) " *"))
+                )
+            )
+        )
+        (recur v w (inc i))
+    )
+)
+
 (defn -sqPhrase []
     (println "Enter a phrase:")
     (def inputPhrase (read-line))
     (def inputVector (split inputPhrase #"\s+"))
     (def width (apply max (mapv count inputVector)))
+    (println (apply str (repeat (+ width 4) "*")))
+    (printPhrase inputVector width)
+    (println (apply str (repeat (+ width 4) "*")))
 )
 
 
