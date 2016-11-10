@@ -73,13 +73,14 @@
 
 (defn checkIfPigLatin
     [array]
-    (loop [array array
-           i 0]
-        (if (< i (count array))
-            (ends-with? (array i) "ay")
-            (recur array (inc i))
-        )
-    )
+    ; (loop [array array
+    ;        i 0]
+    ;     (if (< i (count array))
+    ;         (ends-with? (array i) "ay")
+    ;         (recur array (inc i))
+    ;     )
+    ; )
+    (every? true? (ends-with? array "ay"))
 
 )
 
