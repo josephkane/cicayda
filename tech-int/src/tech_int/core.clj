@@ -45,9 +45,9 @@
     (loop [array array
            i 0]
         (if (< i (count array))
-            (if (not= (ends-with? (array i) "ay"))
-                false
+            (if (ends-with? (array i) "ay")
                 true
+                false
             )
             (recur array (inc i))
         )
