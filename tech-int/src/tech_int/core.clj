@@ -52,24 +52,6 @@
     )
 )
 
-; (defn printPhrase
-;     [v w]
-;     (def i (atom 0))
-;     (while (< @i (count v))
-;         (do
-;             (if (<= @i (count v))
-;                 (if (<= (count (v @i)) w)
-;                     (do
-;                         (println (apply str "* " (v @i) (apply str (repeat (- w (count (v @i))) " ")) " *"))
-;                     )
-;                     (println (apply str "* " (v @i) " *"))
-;                 )
-;             )
-;         )
-;         (swap! i inc)
-;     )
-; )
-
 (defn -sqPhrase []
     (println "Enter a phrase:")
     (def inputPhrase (read-line))
@@ -113,36 +95,37 @@
     (println "1. English to pig latin")
     (println "2. Pig latin to english")
     (def choice (read-line))
-    (println "Enter a phrase:")
-    (def inputPhrase (read-line))
-    (println "--")
-    (def inputArray (split inputPhrase #"\s+"))
-    (if (< (Integer. choice) 3)
-        (if (= choice 1)
+    (try
+        (if (and (Integer. choice) (< (Integer. choice) 3))
             (do
-                (def pigLatinArray (mapv toPigLatin inputArray))
-                (println (capitalize (join " " pigLatinArray)))
-            )
-            (do
-                (if (checkIfPigLatin inputArray)
+                (println "Enter a phrase:")
+                (def inputPhrase (read-line))
+                (println "--")
+                (def inputArray (split inputPhrase #"\s+"))
+                (if (= (Integer. choice) 1)
                     (do
-                        (def englishArray (mapv toEnglish inputArray))
-                        (println (capitalize (join " " englishArray)))
+                        (def pigLatinArray (mapv toPigLatin inputArray))
+                        (println (capitalize (join " " pigLatinArray)))
                     )
                     (do
-                        (println "Phrase is not pig latin, please correct and try again.")
-                        (-pigLatin)
+                        (if (checkIfPigLatin inputArray)
+                            (do
+                                (def englishArray (mapv toEnglish inputArray))
+                                (println (capitalize (join " " englishArray)))
+                            )
+                            (do
+                                (println "Phrase is not pig latin, please correct and try again.")
+                                (-pigLatin)
+                            )
+                        )
                     )
                 )
+                (println "--")
             )
+            (println "Sorry, invalid choice.")
         )
-        (do
-            (println "Sorry, invalid choice")
-            (-pigLatin)
-        )
+        (catch Exception e (println "Sorry, invalid choice."))
     )
-
-    (println "--")
 )
 
 
