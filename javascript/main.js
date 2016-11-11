@@ -54,19 +54,23 @@ printSqPhraseButton.addEventListener("click", printSqPhrase);
 
 function printSqPhrase () {
 	let phrase = document.getElementById("sqPhraseInput").value;
-	let phraseArray = phrase.split(" ");
-	let width = phraseArray.reduce((x, y) => {return x.length > y.length ? x : y}).length;
+	if (phrase != "") {
+		let phraseArray = phrase.split(" ");
+		let width = phraseArray.reduce((x, y) => {return x.length > y.length ? x : y}).length;
 
-	console.log(("*").repeat(width + 4));
-	for (let i = 0; i < phraseArray.length; i++) {
-		if (phraseArray[i].length < width) {
-			let spaces = width - phraseArray[i].length
-			console.log("* " + phraseArray[i] + (" ").repeat(spaces) + " *");
-		} else {
-			console.log(`* ${phraseArray[i]} *`);
+		console.log(("*").repeat(width + 4));
+		for (let i = 0; i < phraseArray.length; i++) {
+			if (phraseArray[i].length < width) {
+				let spaces = width - phraseArray[i].length
+				console.log("* " + phraseArray[i] + (" ").repeat(spaces) + " *");
+			} else {
+				console.log(`* ${phraseArray[i]} *`);
+			}
 		}
+		console.log(("*").repeat(width + 4));
+	} else {
+		alert("Invalid input")
 	}
-	console.log(("*").repeat(width + 4));
 }
 
 /****************
@@ -92,6 +96,8 @@ function translate () {
 		} else {
 			alert("Phrase is not pig latin, please correct and try again.")
 		}
+	} else {
+		alert("Invalid input")
 	}
 }
 
