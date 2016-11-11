@@ -2,9 +2,9 @@
 
 Solutions are provided for the following problems:
 
-  1) Write a program that prints the next 20 leap years.
-  2) Write a function that takes a list of strings and prints them, one per line, in a rectangular frame.
-  3) Write a function that translates a text to Pig Latin and back.
+  - Write a program that prints the next 20 leap years.
+  - Write a function that takes a list of strings and prints them, one per line, in a rectangular frame.
+  - Write a function that translates a text to Pig Latin and back.
 
 Solutions are provided in Javascript and Clojure. Clone this repo with `$ git clone https://github.com/josephkane/cicayda.git` and follow instructions below.
 
