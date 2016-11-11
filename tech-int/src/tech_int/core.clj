@@ -72,16 +72,8 @@
 )
 
 (defn checkIfPigLatin
-    [array]
-    ; (loop [array array
-    ;        i 0]
-    ;     (if (< i (count array))
-    ;         (ends-with? (array i) "ay")
-    ;         (recur array (inc i))
-    ;     )
-    ; )
-    (every? true? (ends-with? array "ay"))
-
+    [string]
+    (ends-with? string "ay")
 )
 
 (defn toEnglish
@@ -109,14 +101,13 @@
                         (println (capitalize (join " " pigLatinArray)))
                     )
                     (do
-                        (if (checkIfPigLatin inputArray)
+                        (if (every? true? (map checkIfPigLatin inputArray))
                             (do
                                 (def englishArray (mapv toEnglish inputArray))
                                 (println (capitalize (join " " englishArray)))
                             )
                             (do
                                 (println "Phrase is not pig latin, please correct and try again.")
-                                (-pigLatin)
                             )
                         )
                     )
