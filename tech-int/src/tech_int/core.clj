@@ -13,21 +13,26 @@
 
 (defn -leapYear []
     (println "Enter a year: ")
-    (def inputYear (Integer. (read-line)))
-    (println "--")
-    (def i (atom 0))
-    (loop [leapYearVector []
-           year inputYear]
-        (when (< @i 20)
-            (if (checkIfLeapYear year)
-                (do
-                    (conj leapYearVector year)
-                    (swap! i inc)
-                    (println year)
-                ))
+    (try
+        (do
+            (def inputYear (Integer. (read-line)))
+            (println "--")
+            (def i (atom 0))
+            (loop [leapYearVector []
+                   year inputYear]
+                (when (< @i 20)
+                    (if (checkIfLeapYear year)
+                        (do
+                            (conj leapYearVector year)
+                            (swap! i inc)
+                            (println year)
+                        ))
 
-            (recur leapYearVector (inc year))
+                    (recur leapYearVector (inc year))
+                )
+            )
         )
+        (catch Exception e (println "Sorry, invalid choice."))
     )
 )
 
