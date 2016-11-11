@@ -20,23 +20,28 @@ const nextTwentyLeapYears = document.getElementById("nextTwentyLeapYears")
 showMeLeapYearsButton.addEventListener("click", calculateLeapYears)
 
 function calculateLeapYears () {
-	let leapYearInput = parseInt(document.getElementById("leapYearInput").value);
-	let leapYearArray = [];
-	nextTwentyLeapYears.innerHTML = "";
+	let leapYearInput = (document.getElementById("leapYearInput").value);
+	if (parseInt(leapYearInput)) {
+		leapYearInput = parseInt(leapYearInput)
+		let leapYearArray = [];
+		nextTwentyLeapYears.innerHTML = "";
 
-	do {
-		if (leapYearInput % 400 == 0 || (leapYearInput % 4 == 0 && !(leapYearInput % 100 == 0))) {
-			leapYearArray.push(leapYearInput);
-			leapYearInput += 1;
-		} else {
-			leapYearInput += 1
+		do {
+			if (leapYearInput % 400 == 0 || (leapYearInput % 4 == 0 && !(leapYearInput % 100 == 0))) {
+				leapYearArray.push(leapYearInput);
+				leapYearInput += 1;
+			} else {
+				leapYearInput += 1
+			}
 		}
-	}
-	while (leapYearArray.length <= 19);
+		while (leapYearArray.length <= 19);
 
-	for (let i = 0; i < leapYearArray.length; i++) {
-		nextTwentyLeapYears.innerHTML += `<div>${leapYearArray[i]}</div>`
-	};
+		for (let i = 0; i < leapYearArray.length; i++) {
+			nextTwentyLeapYears.innerHTML += `<div>${leapYearArray[i]}</div>`
+		};
+	} else {
+		alert("Invalid input")
+	}
 }
 
 
