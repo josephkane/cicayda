@@ -141,8 +141,13 @@ function translateToEnglish (phraseArray) {
 
 function checkForPigLatin (phraseArray) {
 	let status = true;
-	for (word in phraseArray) {
-		if (phraseArray[word].slice(-2) != "ay") {
+	// for (word in phraseArray) {
+	// 	if (phraseArray[word].slice(-2) != "ay") {
+	// 		status = false
+	// 	}
+	// }
+	for (let i = 0; i < phraseArray.length; i++) {
+		if (phraseArray[i].slice(-2) != "ay") {
 			status = false
 		}
 	}
