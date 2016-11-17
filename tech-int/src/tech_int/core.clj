@@ -23,7 +23,7 @@
                 (when (< @i 20)
                     (if (checkIfLeapYear year)
                         (do
-                            (conj leapYearVector year)
+                            ; (conj leapYearVector year)
                             (swap! i inc)
                             (println year)
                         ))
@@ -99,17 +99,23 @@
                 (println "Enter a phrase:")
                 (def inputPhrase (read-line))
                 (println "--")
-                (def inputArray (split inputPhrase #"\s+"))
+                ; (def inputArray (split inputPhrase #"\s+"))
+                (def inputVector (split inputPhrase #"\s+"))
                 (if (= (Integer. choice) 1)
                     (do
-                        (def pigLatinArray (mapv toPigLatin inputArray))
-                        (println (capitalize (join " " pigLatinArray)))
+                        ; (def pigLatinArray (mapv toPigLatin inputArray))
+                        ; (println (capitalize (join " " pigLatinArray)))
+                        (def pigLatinVector (mapv toPigLatin inputVector))
+                        (println (capitalize (join " " pigLatinVector)))
                     )
                     (do
-                        (if (every? true? (map checkIfPigLatin inputArray))
+                        ; (if (every? true? (map checkIfPigLatin inputArray))
+                        (if (every? true? (map checkIfPigLatin inputVector))
                             (do
-                                (def englishArray (mapv toEnglish inputArray))
-                                (println (capitalize (join " " englishArray)))
+                                ; (def englishArray (mapv toEnglish inputArray))
+                                ; (println (capitalize (join " " englishArray)))
+                                (def englishVector (mapv toEnglish inputVector))
+                                (println (capitalize (join " " englishVector)))
                             )
                             (do
                                 (println "Phrase is not pig latin, please correct and try again.")
